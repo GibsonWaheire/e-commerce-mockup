@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Headphones",
+    "price": 79.99,
+    "description": "Comfortable over-ear wireless headphones with 30-hour battery life.",
+    "image": "https://placehold.co/600x400/0ea5e9/ffffff?text=Wireless+Headphones",
+    "category": "Electronics"
+  },
+  {
+    "id": 2,
+    "name": "Smartwatch Pro",
+    "price": 129.99,
+    "description": "Track fitness, notifications, and sleep with a crisp AMOLED display.",
+    "image": "https://placehold.co/600x400/22c55e/ffffff?text=Smartwatch+Pro",
+    "category": "Electronics"
+  },
+  {
+    "id": 3,
+    "name": "Organic Cotton Tee",
+    "price": 19.99,
+    "description": "Soft, breathable t-shirt made from 100% organic cotton.",
+    "image": "https://placehold.co/600x400/6366f1/ffffff?text=Cotton+Tee",
+    "category": "Clothing"
+  },
+  {
+    "id": 4,
+    "name": "Insulated Water Bottle",
+    "price": 24.99,
+    "description": "Keeps drinks cold for 24 hours or hot for 12 hours.",
+    "image": "https://placehold.co/600x400/f59e0b/ffffff?text=Water+Bottle",
+    "category": "Home Goods"
+  },
+  {
+    "id": 5,
+    "name": "Minimalist Backpack",
+    "price": 54.99,
+    "description": "Sleek, durable backpack with padded laptop sleeve.",
+    "image": "https://placehold.co/600x400/0ea5e9/ffffff?text=Backpack",
+    "category": "Clothing"
+  },
+  {
+    "id": 6,
+    "name": "Bluetooth Speaker",
+    "price": 39.99,
+    "description": "Portable speaker with rich bass and splash resistance.",
+    "image": "https://placehold.co/600x400/ef4444/ffffff?text=Speaker",
+    "category": "Electronics"
+  },
+  {
+    "id": 7,
+    "name": "Ceramic Mug Set",
+    "price": 29.99,
+    "description": "Set of 4 matte ceramic mugs, dishwasher safe.",
+    "image": "https://placehold.co/600x400/14b8a6/ffffff?text=Mug+Set",
+    "category": "Home Goods"
+  },
+  {
+    "id": 8,
+    "name": "Running Shoes",
+    "price": 89.99,
+    "description": "Lightweight, breathable shoes for everyday training.",
+    "image": "https://placehold.co/600x400/3b82f6/ffffff?text=Running+Shoes",
+    "category": "Clothing"
+  }
+]

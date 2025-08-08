@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* App globals */
+html, body, #root {
+  height: 100%;
+}
+
+:root {
+  color-scheme: light;
+}
+
+/* Reusable card styling */
+.card {
+  @apply rounded-xl shadow-lg bg-white;
+}
+
+/* Buttons */
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium transition hover:bg-opacity-80 active:scale-[0.99];
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white;
+}
+
+.btn-outline {
+  @apply border border-gray-300 text-gray-800 bg-white hover:bg-gray-50;
+}
+
+/* Fixed navbar compensation */
+.page-wrap {
+  @apply pt-20;
+}
