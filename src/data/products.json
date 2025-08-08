@@ -1,66 +1,74 @@
 [
   {
     "id": 1,
-    "name": "Wireless Headphones",
-    "price": 79.99,
-    "description": "Comfortable over-ear wireless headphones with 30-hour battery life.",
-    "image": "https://placehold.co/600x400/0ea5e9/ffffff?text=Wireless+Headphones",
-    "category": "Electronics"
+    "name": "Vintage Denim Jacket",
+    "price": 25.0,
+    "description": "Grade A denim jacket with minimal wear.",
+    "image": "https://placehold.co/600x400/0ea5e9/ffffff?text=Denim+Jacket",
+    "category": "Outerwear",
+    "condition": "Grade A"
   },
   {
     "id": 2,
-    "name": "Smartwatch Pro",
-    "price": 129.99,
-    "description": "Track fitness, notifications, and sleep with a crisp AMOLED display.",
-    "image": "https://placehold.co/600x400/22c55e/ffffff?text=Smartwatch+Pro",
-    "category": "Electronics"
+    "name": "Designer Handbag",
+    "price": 40.0,
+    "description": "Pre-loved designer handbag in excellent condition.",
+    "image": "https://placehold.co/600x400/22c55e/ffffff?text=Handbag",
+    "category": "Accessories",
+    "condition": "Grade A"
   },
   {
     "id": 3,
-    "name": "Organic Cotton Tee",
-    "price": 19.99,
-    "description": "Soft, breathable t-shirt made from 100% organic cotton.",
-    "image": "https://placehold.co/600x400/6366f1/ffffff?text=Cotton+Tee",
-    "category": "Clothing"
+    "name": "Men's Formal Shirt",
+    "price": 10.0,
+    "description": "Lightly used cotton shirt perfect for office wear.",
+    "image": "https://placehold.co/600x400/6366f1/ffffff?text=Formal+Shirt",
+    "category": "Men",
+    "condition": "Grade B"
   },
   {
     "id": 4,
-    "name": "Insulated Water Bottle",
-    "price": 24.99,
-    "description": "Keeps drinks cold for 24 hours or hot for 12 hours.",
-    "image": "https://placehold.co/600x400/f59e0b/ffffff?text=Water+Bottle",
-    "category": "Home Goods"
+    "name": "Kids' Cartoon Tee",
+    "price": 5.0,
+    "description": "Secondhand tee with vibrant print.",
+    "image": "https://placehold.co/600x400/f59e0b/ffffff?text=Kids+Tee",
+    "category": "Kids",
+    "condition": "Grade B"
   },
   {
     "id": 5,
-    "name": "Minimalist Backpack",
-    "price": 54.99,
-    "description": "Sleek, durable backpack with padded laptop sleeve.",
-    "image": "https://placehold.co/600x400/0ea5e9/ffffff?text=Backpack",
-    "category": "Clothing"
+    "name": "Women's Sneakers",
+    "price": 18.0,
+    "description": "Comfortable sneakers with minor wear.",
+    "image": "https://placehold.co/600x400/0ea5e9/ffffff?text=Sneakers",
+    "category": "Women",
+    "condition": "Grade A"
   },
   {
     "id": 6,
-    "name": "Bluetooth Speaker",
-    "price": 39.99,
-    "description": "Portable speaker with rich bass and splash resistance.",
-    "image": "https://placehold.co/600x400/ef4444/ffffff?text=Speaker",
-    "category": "Electronics"
+    "name": "Assorted Bale - 50pcs",
+    "price": 200.0,
+    "description": "Mixed-grade clothing bale for resellers.",
+    "image": "https://placehold.co/600x400/ef4444/ffffff?text=Clothing+Bale",
+    "category": "Bales",
+    "condition": "Mixed"
   },
   {
     "id": 7,
-    "name": "Ceramic Mug Set",
-    "price": 29.99,
-    "description": "Set of 4 matte ceramic mugs, dishwasher safe.",
-    "image": "https://placehold.co/600x400/14b8a6/ffffff?text=Mug+Set",
-    "category": "Home Goods"
+    "name": "Winter Coat",
+    "price": 30.0,
+    "description": "Heavy winter coat, gently used.",
+    "image": "https://placehold.co/600x400/14b8a6/ffffff?text=Winter+Coat",
+    "category": "Outerwear",
+    "condition": "Grade A"
   },
   {
     "id": 8,
-    "name": "Running Shoes",
-    "price": 89.99,
-    "description": "Lightweight, breathable shoes for everyday training.",
-    "image": "https://placehold.co/600x400/3b82f6/ffffff?text=Running+Shoes",
-    "category": "Clothing"
+    "name": "Classic Leather Belt",
+    "price": 8.0,
+    "description": "Pre-owned genuine leather belt.",
+    "image": "https://placehold.co/600x400/3b82f6/ffffff?text=Leather+Belt",
+    "category": "Accessories",
+    "condition": "Grade B"
   }
 ]

@@ -20,6 +20,9 @@ export default function ProductCard({ product }) {
       <div className="p-4 flex-1 flex flex-col">
         <h3 className="font-semibold text-gray-900">{product.name}</h3>
         <p className="text-sm text-gray-500 line-clamp-2 mt-1">{product.description}</p>
+        {product.condition && (
+          <p className="text-xs text-gray-500 mt-1">Condition: {product.condition}</p>
+        )}
         <div className="mt-auto pt-4 flex items-center justify-between">
           <span className="font-bold text-gray-900">{formatCurrency(product.price)}</span>
           <button

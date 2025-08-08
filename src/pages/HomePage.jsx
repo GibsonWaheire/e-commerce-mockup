@@ -13,11 +13,10 @@ export default function HomePage() {
           <div className="p-8 md:p-14 grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900">
-                Find Your Next Favorite Thing
+                Premium Mtumba Marketplace
               </h1>
               <p className="mt-4 text-gray-600">
-                Clean, modern shopping experience built with React + Tailwind.
-                Fully responsive and fast.
+                Discover high-quality secondhand fashion with an advanced React + Tailwind experience.
               </p>
               <div className="mt-6 flex gap-3">
                 <Link to="/products" className="btn btn-primary">Shop Now</Link>
@@ -26,12 +25,12 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <img
-                src="https://placehold.co/600x400/111827/ffffff?text=ShopLite+Hero"
+                src="https://placehold.co/600x400/111827/ffffff?text=MtumbaHub+Hero"
                 alt="Hero"
                 className="rounded-xl shadow-lg w-full"
               />
               <div className="absolute -bottom-4 -right-4 bg-white shadow-lg rounded-xl px-4 py-2 text-sm">
-                Modern • Minimal • Fast
+                Sustainable • Affordable • Stylish
               </div>
             </div>
           </div>
