@@ -32,6 +32,9 @@ export default function ProductDetailPage() {
         <div className="card p-6">
           <h1 className="text-2xl md:text-3xl font-bold">{product.name}</h1>
           <p className="text-gray-500 mt-2">{product.category}</p>
+          {product.condition && (
+            <p className="text-gray-500 text-sm mt-1">Condition: {product.condition}</p>
+          )}
           <div className="mt-4 text-2xl font-extrabold">{formatCurrency(product.price)}</div>
           <p className="mt-4 text-gray-700">{product.description}</p>
 

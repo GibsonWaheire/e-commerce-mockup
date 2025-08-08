@@ -10,7 +10,7 @@ export default function Navbar() {
       <nav className="container flex h-16 items-center justify-between">
         <Link to="/" className="font-extrabold text-xl">
           <span className="bg-gradient-to-r from-blue-600 to-gray-600 bg-clip-text text-transparent">
-            ShopLite
+            MtumbaHub
           </span>
         </Link>
 
