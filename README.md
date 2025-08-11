@@ -4,6 +4,8 @@
 
 A modern, responsive e-commerce platform built with React and Tailwind CSS, specializing in second-hand children's clothing. Built with accessibility, performance, and user experience in mind.
 
+**🌐 Live Demo: [https://e-commerce-mockup.vercel.app/](https://e-commerce-mockup.vercel.app/)**
+
 ![T-Tots Mtumba Collection](https://img.shields.io/badge/T--Tots-Mtumba%20Collection-pink?style=for-the-badge&logo=react)
 ![React](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.3.0-38B2AC?style=for-the-badge&logo=tailwind-css)
