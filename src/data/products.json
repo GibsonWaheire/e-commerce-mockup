@@ -1,74 +1,245 @@
 [
   {
-    "id": 1,
-    "name": "Vintage Denim Jacket",
-    "price": 25.0,
-    "description": "Grade A denim jacket with minimal wear.",
-    "image": "https://placehold.co/600x400/0ea5e9/ffffff?text=Denim+Jacket",
-    "category": "Outerwear",
-    "condition": "Grade A"
+    "id": "1",
+    "slug": "adorable-pink-dress",
+    "title": "Adorable Pink Floral Dress",
+    "price": 2500,
+    "salePrice": 2000,
+    "images": [
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "category": "dresses",
+    "size": "3-6m",
+    "brand": "Little Princess",
+    "condition": "Like New",
+    "description": "Beautiful pink floral dress perfect for special occasions. Made from soft cotton blend, comfortable for all-day wear.",
+    "stock": 3,
+    "tags": ["dress", "pink", "floral", "special occasion"],
+    "ageRange": "3-6m",
+    "material": "cotton blend"
   },
   {
-    "id": 2,
-    "name": "Designer Handbag",
-    "price": 40.0,
-    "description": "Pre-loved designer handbag in excellent condition.",
-    "image": "https://placehold.co/600x400/22c55e/ffffff?text=Handbag",
-    "category": "Accessories",
-    "condition": "Grade A"
+    "id": "2",
+    "slug": "blue-denim-jacket",
+    "title": "Classic Blue Denim Jacket",
+    "price": 3500,
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "category": "outerwear",
+    "size": "6-12m",
+    "brand": "Tiny Denim",
+    "condition": "Good",
+    "description": "Timeless denim jacket that goes with everything. Perfect for layering in cooler weather.",
+    "stock": 2,
+    "tags": ["jacket", "denim", "blue", "layering"],
+    "ageRange": "6-12m",
+    "material": "denim"
   },
   {
-    "id": 3,
-    "name": "Men's Formal Shirt",
-    "price": 10.0,
-    "description": "Lightly used cotton shirt perfect for office wear.",
-    "image": "https://placehold.co/600x400/6366f1/ffffff?text=Formal+Shirt",
-    "category": "Men",
-    "condition": "Grade B"
+    "id": "3",
+    "slug": "striped-bodysuit",
+    "title": "Striped Cotton Bodysuit",
+    "price": 1200,
+    "images": [
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "category": "onesies",
+    "size": "0-3m",
+    "brand": "Comfy Baby",
+    "condition": "New",
+    "description": "Soft cotton bodysuit with adorable stripes. Perfect for everyday wear and easy diaper changes.",
+    "stock": 5,
+    "tags": ["bodysuit", "stripes", "cotton", "everyday"],
+    "ageRange": "0-3m",
+    "material": "cotton"
   },
   {
-    "id": 4,
-    "name": "Kids' Cartoon Tee",
-    "price": 5.0,
-    "description": "Secondhand tee with vibrant print.",
-    "image": "https://placehold.co/600x400/f59e0b/ffffff?text=Kids+Tee",
-    "category": "Kids",
-    "condition": "Grade B"
+    "id": "4",
+    "slug": "cargo-pants",
+    "title": "Comfortable Cargo Pants",
+    "price": 1800,
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "category": "bottoms",
+    "size": "1-2y",
+    "brand": "Active Kids",
+    "condition": "Like New",
+    "description": "Durable cargo pants with multiple pockets. Great for active toddlers who love to explore.",
+    "stock": 4,
+    "tags": ["pants", "cargo", "pockets", "active"],
+    "ageRange": "1-2y",
+    "material": "cotton twill"
   },
   {
-    "id": 5,
-    "name": "Women's Sneakers",
-    "price": 18.0,
-    "description": "Comfortable sneakers with minor wear.",
-    "image": "https://placehold.co/600x400/0ea5e9/ffffff?text=Sneakers",
-    "category": "Women",
-    "condition": "Grade A"
+    "id": "5",
+    "slug": "graphic-tee",
+    "title": "Fun Graphic T-Shirt",
+    "price": 1500,
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "category": "tops",
+    "size": "2-3y",
+    "brand": "Cool Kids",
+    "condition": "Good",
+    "description": "Colorful graphic t-shirt with fun designs. Made from breathable cotton for comfort.",
+    "stock": 6,
+    "tags": ["t-shirt", "graphic", "colorful", "cotton"],
+    "ageRange": "2-3y",
+    "material": "cotton"
   },
   {
-    "id": 6,
-    "name": "Assorted Bale - 50pcs",
-    "price": 200.0,
-    "description": "Mixed-grade clothing bale for resellers.",
-    "image": "https://placehold.co/600x400/ef4444/ffffff?text=Clothing+Bale",
-    "category": "Bales",
-    "condition": "Mixed"
+    "id": "6",
+    "slug": "winter-boots",
+    "title": "Warm Winter Boots",
+    "price": 4500,
+    "salePrice": 3800,
+    "images": [
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "category": "shoes",
+    "size": "18-24m",
+    "brand": "Tiny Steps",
+    "condition": "Like New",
+    "description": "Insulated winter boots perfect for cold weather. Waterproof and comfortable for little feet.",
+    "stock": 2,
+    "tags": ["boots", "winter", "waterproof", "insulated"],
+    "ageRange": "18-24m",
+    "material": "synthetic"
   },
   {
-    "id": 7,
-    "name": "Winter Coat",
-    "price": 30.0,
-    "description": "Heavy winter coat, gently used.",
-    "image": "https://placehold.co/600x400/14b8a6/ffffff?text=Winter+Coat",
-    "category": "Outerwear",
-    "condition": "Grade A"
+    "id": "7",
+    "slug": "summer-romper",
+    "title": "Lightweight Summer Romper",
+    "price": 2000,
+    "images": [
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "category": "onesies",
+    "size": "6-9m",
+    "brand": "Summer Breeze",
+    "condition": "New",
+    "description": "Perfect summer romper made from lightweight cotton. Easy to wear and comfortable for hot days.",
+    "stock": 7,
+    "tags": ["romper", "summer", "lightweight", "cotton"],
+    "ageRange": "6-9m",
+    "material": "cotton"
   },
   {
-    "id": 8,
-    "name": "Classic Leather Belt",
-    "price": 8.0,
-    "description": "Pre-owned genuine leather belt.",
-    "image": "https://placehold.co/600x400/3b82f6/ffffff?text=Leather+Belt",
-    "category": "Accessories",
-    "condition": "Grade B"
+    "id": "8",
+    "slug": "knit-sweater",
+    "title": "Cozy Knit Sweater",
+    "price": 2800,
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "category": "outerwear",
+    "size": "9-12m",
+    "brand": "Warm & Cozy",
+    "condition": "Good",
+    "description": "Soft knit sweater perfect for cooler weather. Gentle on sensitive skin and easy to layer.",
+    "stock": 3,
+    "tags": ["sweater", "knit", "warm", "soft"],
+    "ageRange": "9-12m",
+    "material": "acrylic blend"
+  },
+  {
+    "id": "9",
+    "slug": "denim-shorts",
+    "title": "Classic Denim Shorts",
+    "price": 1600,
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "category": "bottoms",
+    "size": "2-3y",
+    "brand": "Tiny Denim",
+    "condition": "Like New",
+    "description": "Classic denim shorts perfect for summer. Durable and comfortable for active play.",
+    "stock": 4,
+    "tags": ["shorts", "denim", "summer", "durable"],
+    "ageRange": "2-3y",
+    "material": "denim"
+  },
+  {
+    "id": "10",
+    "slug": "party-dress",
+    "title": "Elegant Party Dress",
+    "price": 4000,
+    "salePrice": 3200,
+    "images": [
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "category": "dresses",
+    "size": "1-2y",
+    "brand": "Little Princess",
+    "condition": "New",
+    "description": "Stunning party dress perfect for special occasions. Beautiful details and comfortable fit.",
+    "stock": 2,
+    "tags": ["dress", "party", "elegant", "special occasion"],
+    "ageRange": "1-2y",
+    "material": "polyester blend"
+  },
+  {
+    "id": "11",
+    "slug": "sports-jacket",
+    "title": "Active Sports Jacket",
+    "price": 3200,
+    "images": [
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "category": "outerwear",
+    "size": "3-4y",
+    "brand": "Active Kids",
+    "condition": "Good",
+    "description": "Lightweight sports jacket perfect for outdoor activities. Breathable and easy to move in.",
+    "stock": 5,
+    "tags": ["jacket", "sports", "active", "breathable"],
+    "ageRange": "3-4y",
+    "material": "nylon"
+  },
+  {
+    "id": "12",
+    "slug": "casual-sneakers",
+    "title": "Comfortable Casual Sneakers",
+    "price": 3800,
+    "images": [
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center",
+      "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=800&h=600&fit=crop&crop=center"
+    ],
+    "thumbUrl": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "category": "shoes",
+    "size": "2-3y",
+    "brand": "Tiny Steps",
+    "condition": "Like New",
+    "description": "Versatile sneakers perfect for everyday wear. Comfortable and durable for active toddlers.",
+    "stock": 3,
+    "tags": ["sneakers", "casual", "comfortable", "durable"],
+    "ageRange": "2-3y",
+    "material": "canvas"
   }
 ]

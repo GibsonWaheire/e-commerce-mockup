@@ -1,11 +1,29 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { createContext, useContext, useMemo, useState, useEffect } from 'react';
 
 const CartContext = createContext();
 
-export function CartProvider({ children }) {
-  const [items, setItems] = useState([]); // [{ product, quantity }]
+const LOCAL_STORAGE_KEY = 'ttots_cart';
 
-  const addToCart = (product, qty = 1) => {
+export function CartProvider({ children }) {
+  const [items, setItems] = useState(() => {
+    try {
+      const storedItems = localStorage.getItem(LOCAL_STORAGE_KEY);
+      return storedItems ? JSON.parse(storedItems) : [];
+    } catch (error) {
+      console.error("Failed to read cart from localStorage", error);
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
+    } catch (error) {
+      console.error("Failed to write cart to localStorage", error);
+    }
+  }, [items]);
+
+  const addItem = (product, qty = 1) => {
     setItems(prev => {
       const existing = prev.find(i => i.product.id === product.id);
       if (existing) {
@@ -17,23 +35,15 @@ export function CartProvider({ children }) {
     });
   };
 
-  const removeFromCart = (productId) => {
+  const removeItem = (productId) => {
     setItems(prev => prev.filter(i => i.product.id !== productId));
   };
 
-  const increaseQty = (productId) => {
-    setItems(prev =>
-      prev.map(i =>
-        i.product.id === productId ? { ...i, quantity: i.quantity + 1 } : i
-      )
-    );
-  };
-
-  const decreaseQty = (productId) => {
+  const updateItemQuantity = (productId, newQuantity) => {
     setItems(prev =>
       prev
         .map(i =>
-          i.product.id === productId ? { ...i, quantity: i.quantity - 1 } : i
+          i.product.id === productId ? { ...i, quantity: newQuantity } : i
         )
         .filter(i => i.quantity > 0)
     );
@@ -43,16 +53,15 @@ export function CartProvider({ children }) {
 
   const totals = useMemo(() => {
     const count = items.reduce((acc, i) => acc + i.quantity, 0);
-    const subtotal = items.reduce((acc, i) => acc + i.product.price * i.quantity, 0);
+    const subtotal = items.reduce((acc, i) => acc + (i.product.salePrice || i.product.price) * i.quantity, 0);
     return { count, subtotal };
   }, [items]);
 
   const value = {
     items,
-    addToCart,
-    removeFromCart,
-    increaseQty,
-    decreaseQty,
+    addItem,
+    removeItem,
+    updateItemQuantity,
     clearCart,
     totals,
   };
@@ -62,6 +71,16 @@ export function CartProvider({ children }) {
 
 export function useCart() {
   const ctx = useContext(CartContext);
-  if (!ctx) throw new Error('useCart must be used within CartProvider');
+  if (!ctx) {
+    console.error('useCart must be used within CartProvider');
+    return {
+      items: [],
+      addItem: () => {},
+      removeItem: () => {},
+      updateItemQuantity: () => {},
+      clearCart: () => {},
+      totals: { count: 0, subtotal: 0 }
+    };
+  }
   return ctx;
 }

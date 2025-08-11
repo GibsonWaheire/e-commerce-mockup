@@ -13,23 +13,120 @@ html, body, #root {
 
 /* Reusable card styling */
 .card {
-  @apply rounded-xl shadow-lg bg-white;
+  @apply rounded-2xl shadow-lg bg-white;
 }
 
 /* Buttons */
 .btn {
-  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium transition hover:bg-opacity-80 active:scale-[0.99];
+  @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium transition hover:bg-opacity-80 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
 }
 
 .btn-primary {
-  @apply bg-blue-600 text-white;
+  @apply bg-pink-500 text-white focus-visible:ring-pink-500;
 }
 
 .btn-outline {
-  @apply border border-gray-300 text-gray-800 bg-white hover:bg-gray-50;
+  @apply border border-gray-300 text-gray-800 bg-white hover:bg-gray-50 focus-visible:ring-gray-500;
 }
 
-/* Fixed navbar compensation */
-.page-wrap {
-  @apply pt-20;
+/* Custom animations for hero section */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.8s ease-out forwards;
+}
+
+.animate-fade-in-left {
+  animation: fade-in-left 0.8s ease-out forwards;
+}
+
+/* Line clamp utilities */
+.line-clamp-1 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Text balance utility */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid #ec4899;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }

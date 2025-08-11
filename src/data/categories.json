@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "onesies",
+    "name": "Onesies & Bodysuits",
+    "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "description": "Comfortable and adorable onesies for your little ones",
+    "count": 15
+  },
+  {
+    "slug": "tops",
+    "name": "Tops & Tees",
+    "image": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "description": "Stylish tops and t-shirts for everyday wear",
+    "count": 23
+  },
+  {
+    "slug": "bottoms",
+    "name": "Bottoms",
+    "image": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "description": "Comfortable pants, shorts, and leggings",
+    "count": 18
+  },
+  {
+    "slug": "dresses",
+    "name": "Dresses",
+    "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "description": "Beautiful dresses for special occasions and everyday",
+    "count": 12
+  },
+  {
+    "slug": "outerwear",
+    "name": "Outerwear",
+    "image": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "description": "Warm jackets, coats, and sweaters",
+    "count": 9
+  },
+  {
+    "slug": "shoes",
+    "name": "Shoes",
+    "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "description": "Comfortable and stylish footwear",
+    "count": 7
+  },
+  {
+    "slug": "new-arrivals",
+    "name": "New Arrivals",
+    "image": "https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=400&h=300&fit=crop&crop=center",
+    "description": "Fresh stock just arrived",
+    "count": 25
+  },
+  {
+    "slug": "clearance",
+    "name": "Clearance",
+    "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&h=300&fit=crop&crop=center",
+    "description": "Amazing deals on selected items",
+    "count": 31
+  }
+]
