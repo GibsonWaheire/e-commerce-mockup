@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { BRAND } from '../lib/brand';
 import ImageWithFallback from './ImageWithFallback.jsx';
 import { useCart } from '../context/CartContext.jsx';
+import { useToast } from '../context/ToastContext.jsx';
 import { useState } from 'react';
 
 const formatCurrency = (n) => new Intl.NumberFormat('en-KE', { style: 'currency', currency: 'KES' }).format(n);
@@ -9,6 +10,7 @@ const formatCurrency = (n) => new Intl.NumberFormat('en-KE', { style: 'currency'
 export default function ProductCard({ product }) {
   const { id, slug, title, price, salePrice, category, thumbUrl, condition, ageRange, material } = product;
   const { addItem } = useCart();
+  const { showSuccess } = useToast();
   const [isAdding, setIsAdding] = useState(false);
 
   const handleAddToCart = (e) => {
@@ -16,6 +18,10 @@ export default function ProductCard({ product }) {
     e.stopPropagation();
     setIsAdding(true);
     addItem(product, 1);
+    
+    // Show success toast
+    showSuccess(`${title} added to cart!`, 2000);
+    
     setTimeout(() => setIsAdding(false), 1000);
   };
 
@@ -33,7 +39,6 @@ export default function ProductCard({ product }) {
             loading="lazy"
             decoding="async"
           />
-          
           {/* Condition Badge */}
           <div className="absolute top-3 left-3">
             <span className={`px-2 py-1 text-xs font-medium rounded-full ${
@@ -44,7 +49,6 @@ export default function ProductCard({ product }) {
               {condition}
             </span>
           </div>
-
           {/* Sale Badge */}
           {hasSale && (
             <div className="absolute top-3 right-3">
@@ -54,19 +58,13 @@ export default function ProductCard({ product }) {
             </div>
           )}
         </div>
-
         <div className="p-4 md:p-5">
-          {/* Category */}
           <div className="text-xs text-gray-500 uppercase tracking-wide mb-2">
             {category}
           </div>
-
-          {/* Title */}
           <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-pink-600 transition-colors">
             {title}
           </h3>
-
-          {/* Price */}
           <div className="flex items-center gap-2 mb-3">
             <span className="text-lg font-bold text-gray-900">
               {formatCurrency(finalPrice)}
@@ -77,16 +75,12 @@ export default function ProductCard({ product }) {
               </span>
             )}
           </div>
-
-          {/* Details */}
           <div className="flex items-center gap-4 text-sm text-gray-600 mb-4">
             <span>{ageRange}</span>
             <span className="capitalize">{material}</span>
           </div>
         </div>
       </Link>
-
-      {/* Add to Cart Button */}
       <div className="px-4 md:px-5 pb-4 md:pb-5">
         <button
           onClick={handleAddToCart}

@@ -6,6 +6,7 @@ import Section from '../components/Section.jsx';
 import { BRAND } from '../lib/brand';
 import ImageWithFallback from '../components/ImageWithFallback.jsx';
 import { useCart } from '../context/CartContext.jsx';
+import { useToast } from '../context/ToastContext.jsx';
 
 const formatCurrency = (n) => new Intl.NumberFormat('en-KE', { style: 'currency', currency: 'KES' }).format(n);
 
@@ -15,6 +16,7 @@ export default function ProductDetailPage() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [selectedImage, setSelectedImage] = useState(0);
   const { addItem } = useCart();
+  const { showSuccess } = useToast();
 
   useEffect(() => {
     const foundProduct = products.find(p => p.slug === slug);
@@ -30,7 +32,7 @@ export default function ProductDetailPage() {
   const handleAddToCart = () => {
     if (product) {
       addItem(product, 1);
-      // You could add a toast notification here
+      showSuccess(`${product.title} added to cart!`, 2000);
     }
   };
 
@@ -199,14 +201,14 @@ export default function ProductDetailPage() {
             </div>
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7v10l8 4" />
               </svg>
               <span>Sustainable</span>
             </div>
           </div>
         </div>
       </div>
-
+      
       {/* Related Products */}
       {relatedProducts.length > 0 && (
         <div>

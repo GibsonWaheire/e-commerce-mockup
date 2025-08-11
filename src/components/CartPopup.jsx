@@ -30,36 +30,33 @@ export default function CartPopup({ isOpen, onClose }) {
     };
 
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
       cartRef.current?.focus();
-    } else {
-      document.body.style.overflow = '';
     }
 
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = '';
     };
   }, [isOpen, handleClose]);
 
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black bg-opacity-50 flex justify-end"
-      onClick={handleClose}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="cart-popup-title"
-    >
+    <>
+      {/* Semi-transparent overlay that allows scrolling */}
+      <div
+        className="fixed inset-0 z-40 bg-black bg-opacity-25 pointer-events-none"
+        onClick={handleClose}
+      />
+      
+      {/* Cart Popup - positioned on the right side */}
       <div
         ref={cartRef}
-        className="bg-white w-full max-w-md h-full shadow-2xl flex flex-col transform transition-transform duration-300 ease-out mt-16"
+        className="fixed top-16 right-0 z-50 w-full max-w-md h-[calc(100vh-4rem)] bg-white shadow-2xl border-l border-gray-200 transform transition-transform duration-300 ease-out"
         onClick={(e) => e.stopPropagation()}
         tabIndex="-1"
       >
-        {/* Header with enhanced info */}
+        {/* Header */}
         <div className="px-6 py-4 border-b border-gray-200 bg-gradient-to-r from-pink-50 to-purple-50">
           <div className="flex items-center justify-between mb-2">
             <h2 id="cart-popup-title" className="text-xl font-bold text-gray-900">
@@ -77,7 +74,7 @@ export default function CartPopup({ isOpen, onClose }) {
           </div>
           
           {/* Cart Summary Stats */}
-          <div className="flex items-center justify-between text-sm text-gray-600">
+          <div className="flex items-center justify-between text-sm text-gray-600 mb-3">
             <div className="flex items-center gap-2">
               <span className="bg-pink-100 text-pink-800 px-2 py-1 rounded-full text-xs font-medium">
                 {totals.count} {totals.count === 1 ? 'item' : 'items'}
@@ -94,6 +91,26 @@ export default function CartPopup({ isOpen, onClose }) {
               </span>
             )}
           </div>
+
+          {/* Continue Shopping Button */}
+          {items.length > 0 && (
+            <div className="flex gap-2">
+              <Link
+                to="/products"
+                onClick={handleClose}
+                className="flex-1 text-center px-3 py-2 text-xs text-pink-600 hover:text-pink-700 hover:bg-pink-100 rounded-lg transition-colors border border-pink-200 hover:border-pink-300"
+              >
+                🛍️ Continue Shopping
+              </Link>
+              <Link
+                to="/category/new-arrivals"
+                onClick={handleClose}
+                className="text-center px-3 py-2 text-xs text-gray-600 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors border border-gray-200 hover:border-gray-300"
+              >
+                🆕 New
+              </Link>
+            </div>
+          )}
         </div>
 
         {/* Cart Items with enhanced empty state */}
@@ -141,7 +158,7 @@ export default function CartPopup({ isOpen, onClose }) {
             </div>
           ) : (
             <>
-              {/* Items list with count indicator */}
+              {/* Items list with full editing capabilities */}
               <div className="space-y-4">
                 {items.map((item, index) => (
                   <div key={item.product.id} className="relative">
@@ -229,7 +246,7 @@ export default function CartPopup({ isOpen, onClose }) {
                 <Link
                   to="/checkout"
                   onClick={handleClose}
-                  className="block w-full text-center bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 px-6 rounded-lg font-semibold hover:from-pink-600 hover:to-purple-700 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  className="block w-full text-center bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 px-6 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   🛒 Proceed to Checkout
                 </Link>
@@ -271,6 +288,6 @@ export default function CartPopup({ isOpen, onClose }) {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }
