@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -6,8 +7,16 @@ export default function WhatsAppWidget() {
   const [message, setMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
+  const [chatMessages, setChatMessages] = useState([]);
+  const [currentStep, setCurrentStep] = useState('welcome');
   const widgetRef = useRef(null);
   const notificationRef = useRef(null);
+  const chatEndRef = useRef(null);
+
+  // Auto-scroll to bottom of chat
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatMessages]);
 
   // Auto-show notification after 3 seconds
   useEffect(() => {
@@ -29,6 +38,21 @@ export default function WhatsAppWidget() {
     }
   }, [showNotification]);
 
+  // Initialize chat with welcome message
+  useEffect(() => {
+    if (isOpen && chatMessages.length === 0) {
+      setChatMessages([
+        {
+          id: 1,
+          type: 'agent',
+          message: "Hi there! 👋 Welcome to T-Tots Mtumba Collection. How can I help you today?",
+          timestamp: new Date(),
+          quickActions: ['Product Questions', 'Size Guide', 'Shipping Info', 'Returns', 'Browse Products']
+        }
+      ]);
+    }
+  }, [isOpen, chatMessages.length]);
+
   const handleWhatsAppClick = () => {
     // Open WhatsApp with pre-filled message
     const text = encodeURIComponent("Hi! I'm interested in your kids' mtumba collection. Can you help me?");
@@ -41,18 +65,157 @@ export default function WhatsAppWidget() {
     setShowNotification(false);
   };
 
+  const addMessage = (message, type = 'user') => {
+    const newMessage = {
+      id: Date.now(),
+      type,
+      message,
+      timestamp: new Date()
+    };
+    setChatMessages(prev => [...prev, newMessage]);
+  };
+
+  const handleQuickAction = (action) => {
+    addMessage(action, 'user');
+    
+    // Simulate typing
+    setIsTyping(true);
+    
+    setTimeout(() => {
+      setIsTyping(false);
+      handleAutomatedResponse(action);
+    }, 1000);
+  };
+
+  const handleAutomatedResponse = (action) => {
+    let response = '';
+    let quickActions = [];
+    let navigation = null;
+
+    switch (action.toLowerCase()) {
+      case 'product questions':
+        response = "Great! I can help you with product information. What would you like to know?";
+        quickActions = ['Size Guide', 'Material Info', 'Condition Details', 'Price Questions', 'Browse Products'];
+        break;
+      
+      case 'size guide':
+        response = "📏 Here's our size guide for kids' clothing:\n\n• 0-3 months: 50-62 cm\n• 3-6 months: 62-68 cm\n• 6-12 months: 68-74 cm\n• 12-18 months: 74-80 cm\n• 18-24 months: 80-86 cm\n• 2-3 years: 86-92 cm\n• 3-4 years: 92-98 cm\n• 4-5 years: 98-104 cm\n\nWould you like me to show you products in a specific size?";
+        quickActions = ['Show 0-3 months', 'Show 3-6 months', 'Show 6-12 months', 'Browse All Sizes'];
+        break;
+      
+      case 'shipping info':
+        response = "🚚 Shipping Information:\n\n• Standard Delivery: KSh 300 (3-5 business days)\n• Express Delivery: KSh 600 (1-2 business days)\n• FREE Shipping on orders over KSh 5,000\n\nWe ship to all major cities in Kenya. Would you like to see our shipping policy?";
+        quickActions = ['Shipping Policy', 'Track Order', 'Delivery Areas', 'Back to Products'];
+        break;
+      
+      case 'returns':
+        response = "🔄 Returns & Exchange Policy:\n\n• 30-day return window\n• Free returns for defective items\n• Size exchanges available\n• Refunds processed within 5-7 days\n\nNeed help with a return? I can guide you through the process!";
+        quickActions = ['Start Return', 'Exchange Item', 'Return Policy', 'Contact Support'];
+        break;
+      
+      case 'browse products':
+        response = "🛍️ Let me take you to our product collection! You can browse by category, age range, or view all products.";
+        quickActions = ['View All Products', 'Shop by Category', 'New Arrivals', 'Clearance Sale'];
+        navigation = '/products';
+        break;
+      
+      case 'show 0-3 months':
+      case 'show 3-6 months':
+      case 'show 6-12 months':
+        response = `Perfect! I'll show you products for ${action.toLowerCase()}. Here are some great options:`;
+        quickActions = ['View More', 'Add to Cart', 'Size Guide', 'Back to Categories'];
+        navigation = `/products?age=${action.toLowerCase().replace(' ', '-')}`;
+        break;
+      
+      case 'material info':
+        response = "🧵 Our clothing materials:\n\n• Cotton Blend: Soft, breathable, perfect for sensitive skin\n• Polyester: Durable, easy-care, great for active kids\n• Denim: Classic, long-lasting, perfect for everyday wear\n• Knit: Stretchy, comfortable, ideal for movement\n\nAll materials are carefully selected for comfort and durability!";
+        quickActions = ['Browse Cotton Items', 'View Denim Collection', 'See All Materials', 'Back to Products'];
+        break;
+      
+      case 'condition details':
+        response = "⭐ Product Condition Grades:\n\n• New: Never worn, with tags\n• Like New: Minimal wear, excellent condition\n• Good: Light wear, still very wearable\n• Fair: Some wear, good for everyday use\n\nEvery item is carefully inspected and graded for quality!";
+        quickActions = ['View New Items', 'Like New Collection', 'All Conditions', 'Quality Promise'];
+        break;
+      
+      case 'price questions':
+        response = "💰 Our Pricing:\n\n• New items: 40-60% off retail prices\n• Like New: 50-70% off retail prices\n• Good condition: 60-80% off retail prices\n• Clearance items: Up to 90% off!\n\nAll prices are in Kenyan Shillings (KES). Need help finding items in your budget?";
+        quickActions = ['Under KSh 1,000', 'Under KSh 2,000', 'Clearance Items', 'Price Range Help'];
+        break;
+      
+      default:
+        response = "I'm here to help! Could you please be more specific about what you'd like to know? I can help with products, sizes, shipping, returns, and more.";
+        quickActions = ['Product Questions', 'Size Guide', 'Shipping Info', 'Returns', 'Browse Products'];
+    }
+
+    // Add automated response
+    const autoResponse = {
+      id: Date.now(),
+      type: 'agent',
+      message: response,
+      timestamp: new Date(),
+      quickActions,
+      navigation
+    };
+
+    setChatMessages(prev => [...prev, autoResponse]);
+
+    // Navigate if specified
+    if (navigation) {
+      setTimeout(() => {
+        window.open(navigation, '_blank');
+      }, 1500);
+    }
+  };
+
   const handleSendMessage = (e) => {
     e.preventDefault();
     if (!message.trim()) return;
 
-    // Simulate sending message
+    // Add user message
+    addMessage(message, 'user');
+    setMessage('');
+
+    // Simulate typing
     setIsTyping(true);
+    
     setTimeout(() => {
       setIsTyping(false);
-      setMessage('');
-      // In a real app, you'd send this to your backend
-      console.log('Message sent:', message);
-    }, 1000);
+      
+      // Check for keywords and provide relevant response
+      const lowerMessage = message.toLowerCase();
+      let response = '';
+      let quickActions = [];
+
+      if (lowerMessage.includes('size') || lowerMessage.includes('measurement')) {
+        response = "I can help you with sizing! Let me show you our size guide and help you find the perfect fit.";
+        quickActions = ['Size Guide', 'Show My Size', 'Measurements Help', 'Back to Products'];
+      } else if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('expensive')) {
+        response = "Great question about pricing! Our items are 40-90% off retail prices, making sustainable fashion affordable. Let me show you some options in different price ranges.";
+        quickActions = ['Under KSh 1,000', 'Under KSh 2,000', 'Clearance Items', 'Price Range Help'];
+      } else if (lowerMessage.includes('shipping') || lowerMessage.includes('delivery') || lowerMessage.includes('ship')) {
+        response = "I can help with shipping information! We offer standard and express delivery options, with free shipping on orders over KSh 5,000.";
+        quickActions = ['Shipping Info', 'Delivery Areas', 'Track Order', 'Shipping Policy'];
+      } else if (lowerMessage.includes('return') || lowerMessage.includes('exchange') || lowerMessage.includes('refund')) {
+        response = "I understand you have questions about returns! We have a 30-day return window and offer free exchanges for sizing issues.";
+        quickActions = ['Returns Policy', 'Start Return', 'Exchange Process', 'Contact Support'];
+      } else if (lowerMessage.includes('quality') || lowerMessage.includes('condition') || lowerMessage.includes('wear')) {
+        response = "Quality is our priority! Every item is carefully inspected and graded. We only sell items that meet our quality standards.";
+        quickActions = ['Quality Promise', 'Condition Guide', 'Inspection Process', 'View Products'];
+      } else {
+        response = "Thank you for your message! I'd be happy to help you find what you're looking for. Let me show you some options.";
+        quickActions = ['Browse Products', 'Size Guide', 'Shipping Info', 'Contact Support'];
+      }
+
+      const autoResponse = {
+        id: Date.now(),
+        type: 'agent',
+        message: response,
+        timestamp: new Date(),
+        quickActions
+      };
+
+      setChatMessages(prev => [...prev, autoResponse]);
+    }, 1500);
   };
 
   const handleMinimize = () => {
@@ -62,6 +225,12 @@ export default function WhatsAppWidget() {
   const handleClose = () => {
     setIsOpen(false);
     setIsMinimized(false);
+    setChatMessages([]);
+    setCurrentStep('welcome');
+  };
+
+  const formatTime = (date) => {
+    return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
   return (
@@ -177,37 +346,48 @@ export default function WhatsAppWidget() {
 
           {/* Chat Messages */}
           <div className="h-64 overflow-y-auto p-4 space-y-3">
-            {/* Welcome Message */}
-            <div className="flex items-start gap-2">
-              <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
-              <div className="bg-gray-100 rounded-lg p-3 max-w-xs">
-                <div className="text-sm text-gray-900">
-                  Hi there! 👋 Welcome to T-Tots Mtumba Collection. How can I help you today?
+            {chatMessages.map((msg) => (
+              <div key={msg.id} className={`flex items-start gap-2 ${msg.type === 'user' ? 'justify-end' : ''}`}>
+                {msg.type === 'agent' && (
+                  <div className="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-4 h-4 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                )}
+                
+                <div className={`max-w-xs ${msg.type === 'user' ? 'order-1' : ''}`}>
+                  <div className={`rounded-lg p-3 ${
+                    msg.type === 'user' 
+                      ? 'bg-pink-500 text-white' 
+                      : 'bg-gray-100 text-gray-900'
+                  }`}>
+                    <div className="text-sm whitespace-pre-line">{msg.message}</div>
+                    <div className={`text-xs mt-1 ${
+                      msg.type === 'user' ? 'text-pink-100' : 'text-gray-500'
+                    }`}>
+                      {formatTime(msg.timestamp)}
+                    </div>
+                  </div>
+                  
+                  {/* Quick Actions */}
+                  {msg.quickActions && msg.type === 'agent' && (
+                    <div className="mt-2 flex flex-wrap gap-1">
+                      {msg.quickActions.map((action, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleQuickAction(action)}
+                          className="px-2 py-1 bg-pink-100 text-pink-700 text-xs rounded-full hover:bg-pink-200 transition-colors"
+                        >
+                          {action}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
-                <div className="text-xs text-gray-500 mt-1">Just now</div>
               </div>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="flex flex-wrap gap-2">
-              <button className="px-3 py-1 bg-pink-100 text-pink-700 text-xs rounded-full hover:bg-pink-200 transition-colors">
-                Product Questions
-              </button>
-              <button className="px-3 py-1 bg-pink-100 text-pink-700 text-xs rounded-full hover:bg-pink-200 transition-colors">
-                Size Guide
-              </button>
-              <button className="px-3 py-1 bg-pink-100 text-pink-700 text-xs rounded-full hover:bg-pink-200 transition-colors">
-                Shipping Info
-              </button>
-              <button className="px-3 py-1 bg-pink-100 text-pink-700 text-xs rounded-full hover:bg-pink-200 transition-colors">
-                Returns
-              </button>
-            </div>
-
+            ))}
+            
             {/* Typing Indicator */}
             {isTyping && (
               <div className="flex items-start gap-2">
@@ -225,6 +405,8 @@ export default function WhatsAppWidget() {
                 </div>
               </div>
             )}
+            
+            <div ref={chatEndRef} />
           </div>
 
           {/* Chat Input */}
