@@ -14,6 +14,7 @@ import NotFound from './pages/NotFound.jsx';
 import { CartProvider } from './context/CartContext.jsx';
 import { ToastProvider, useToast } from './context/ToastContext.jsx';
 import { ToastContainer } from './components/Toast.jsx';
+import WhatsAppWidget from './components/WhatsAppWidget.jsx';
 
 function AppContent() {
   const { toasts, removeToast } = useToast();
@@ -44,6 +45,7 @@ function AppContent() {
         </main>
         <Footer />
         <ToastContainer toasts={toasts} removeToast={removeToast} />
+        <WhatsAppWidget />
       </div>
     </Router>
   );

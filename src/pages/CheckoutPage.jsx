@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext.jsx';
+import { useToast } from '../context/ToastContext.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import { BRAND } from '../lib/brand';
 import Section from '../components/Section.jsx';
@@ -7,7 +8,8 @@ import Section from '../components/Section.jsx';
 const formatCurrency = (n) => new Intl.NumberFormat('en-KE', { style: 'currency', currency: 'KES' }).format(n);
 
 export default function CheckoutPage() {
-  const { items, totals, clearCart } = useCart();
+  const { items, totals, clearCart, removeItem, updateItemQuantity } = useCart();
+  const { showSuccess, showInfo } = useToast();
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -73,13 +75,7 @@ export default function CheckoutPage() {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className={`${BRAND.spacing.container} py-4`}>
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">T</span>
-              </div>
-              <span className="font-bold text-xl text-gray-900">{BRAND.shortName}</span>
-            </Link>
+          <div className="flex items-center justify-end">
             <div className="text-sm text-gray-600">
               Secure Checkout • SSL Encrypted
             </div>
@@ -509,24 +505,37 @@ export default function CheckoutPage() {
                             </div>
                           </div>
 
-                          {/* Remove Button */}
-                          <button
-                            className="p-2 rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors text-gray-400"
-                            aria-label="Remove item"
-                            title="Remove item"
-                            onClick={() => {
-                              // In a real app, you might want to confirm this action
-                              if (window.confirm('Remove this item from cart?')) {
-                                // This would need to be passed down from the parent component
-                                // For now, we'll just show a message
-                                alert('Item removal functionality would be implemented here');
-                              }
-                            }}
-                          >
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                          </button>
+                          {/* Action Buttons */}
+                          <div className="flex items-center gap-2">
+                            <button
+                              className="p-2 rounded-lg hover:bg-pink-50 hover:text-pink-600 transition-colors text-gray-400"
+                              aria-label="Save for later"
+                              title="Save for later"
+                              onClick={() => {
+                                // In a real app, this would move the item to a wishlist
+                                alert('Item saved for later! (Wishlist functionality would be implemented here)');
+                              }}
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                              </svg>
+                            </button>
+                            <button
+                              className="p-2 rounded-lg hover:bg-red-50 hover:text-red-600 transition-colors text-gray-400"
+                              aria-label="Remove item"
+                              title="Remove item"
+                              onClick={() => {
+                                if (window.confirm('Remove this item from cart?')) {
+                                  removeItem(item.product.id);
+                                  showInfo(`${item.product.title} removed from cart`);
+                                }
+                              }}
+                            >
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                              </svg>
+                            </button>
+                          </div>
                         </div>
 
                         {/* Quantity Controls */}
@@ -535,10 +544,10 @@ export default function CheckoutPage() {
                             <span className="text-sm text-gray-600">Quantity:</span>
                             <div className="inline-flex items-center gap-1 bg-white rounded-lg p-1 border border-gray-200">
                               <button
-                                className="w-7 h-7 rounded-md hover:bg-gray-100 transition-all duration-200 flex items-center justify-center text-gray-600 hover:text-gray-900"
+                                className="w-7 h-7 rounded-md hover:bg-gray-100 transition-all duration-200 flex items-center justify-center text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
                                 onClick={() => {
-                                  // This would need to be passed down from the parent component
-                                  alert('Quantity decrease functionality would be implemented here');
+                                  updateItemQuantity(item.product.id, item.quantity - 1);
+                                  showInfo(`Quantity updated to ${item.quantity - 1}`);
                                 }}
                                 aria-label="Decrease quantity"
                                 disabled={item.quantity <= 1}
@@ -553,8 +562,8 @@ export default function CheckoutPage() {
                               <button
                                 className="w-7 h-7 rounded-md hover:bg-gray-100 transition-all duration-200 flex items-center justify-center text-gray-600 hover:text-gray-900"
                                 onClick={() => {
-                                  // This would need to be passed down from the parent component
-                                  alert('Quantity increase functionality would be implemented here');
+                                  updateItemQuantity(item.product.id, item.quantity + 1);
+                                  showInfo(`Quantity updated to ${item.quantity + 1}`);
                                 }}
                                 aria-label="Increase quantity"
                               >
@@ -605,6 +614,21 @@ export default function CheckoutPage() {
                   <span>Total</span>
                   <span className="text-pink-600">{formatCurrency(finalTotal)}</span>
                 </div>
+              </div>
+
+              {/* Cart Actions */}
+              <div className="pt-4 border-t border-gray-200">
+                <button
+                  onClick={() => {
+                    if (window.confirm('Are you sure you want to clear your entire cart?')) {
+                      clearCart();
+                      showInfo('Cart cleared successfully');
+                    }
+                  }}
+                  className="w-full px-4 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors border border-red-200 hover:border-red-300"
+                >
+                  🗑️ Clear Cart
+                </button>
               </div>
 
               {/* Trust Badges */}
